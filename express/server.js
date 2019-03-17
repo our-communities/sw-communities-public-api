@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 
-router.get('/api/v1', (req, res) => {
+router.get('/api-v1', (req, res) => {
   console.log('API v1 route hit');
 
   fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
