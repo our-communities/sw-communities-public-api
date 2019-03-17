@@ -66,7 +66,25 @@ router.get('/api/v1/allEventsByOrganiser/:id', (req, res) => {
   });
 });
 
+router.get('/api/v1/nextEventByOrganiser/:id', (req, res) => {
+  fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
+    mode: 'no-cors'
+  })
+  .then(res => res.json())
+  .then(data => {
+    let theseEvents = Events.nextEventByOrganiser(data, req.params.id);
+    res.json({ event : theseEvents });
+  }).catch(err => {
+    console.log(err);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(err);
+    res.end();
+  });
+});
+
 app.use(bodyParser.json());
+
+// Make app work locally and remotely
 if (process.env.CONTEXT){
   app.use('/.netlify/functions/server', router); // path must route to lambda
 } else {

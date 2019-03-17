@@ -20,15 +20,13 @@ class Evnt {
 
   nextEventByOrganiser(allEvents, orgID) {
     // filter out all events for requested org
-
+    let orgEvents = this.allEventsByOrganiser(allEvents, orgID);
 
     // sort event by date
+    orgEvents.sort(sortByDate);
 
-
-    // pull out the most recent
-
-
-    // return them
+    // return it
+    return orgEvents[0];
   }
 
   eventByID(allEvents, eventID) {
@@ -44,5 +42,9 @@ class Evnt {
     return thisEvent;
   }
 }
+
+let sortByDate = (a, b) => {
+  return new Date(a.start) - new Date(b.start);
+};
 
 module.exports = new Evnt();
