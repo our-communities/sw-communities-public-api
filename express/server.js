@@ -39,8 +39,8 @@ module.exports = app;
 module.exports.handler = serverless(app);
 
 // This file loads!
-// fetch('https://southwestcommunities.co.uk/api/v1/data.json', {mode: 'no-cors'})
-//  .then((response) => response.json())
-//  .then((responseText) => {
-//      console.log(responseText);
-//  });
+fetch('https://southwestcommunities.co.uk/api/v1/data.json', {mode: 'no-cors'})
+ .then((response) => response.json())
+ .then((responseText) => {
+     console.log(responseText);
+ });
