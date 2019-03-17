@@ -18,10 +18,18 @@ router.get('/api/v1', (req, res) => {
 
   //fetch('https://southwestcommunities.co.uk/api/v1/data.json')
   //.then(res.json({ data : req.body }));
+  fetch('https://southwestcommunities.co.uk/api/v1/data.json')
+   .then(res => res.json())
+   .then(data => {
+      res.send({ data });
+   })
+   .catch(err => {
+      res.write(err);
+   });
 
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('<h1>Hello from Express.js API!</h1>');
-  res.end();
+  // res.writeHead(200, { 'Content-Type': 'text/html' });
+  // res.write('<h1>Hello from Express.js API!</h1>');
+  // res.end();
 });
 
 router.post('/', (req, res) => res.json({ postBody: req.body }));
