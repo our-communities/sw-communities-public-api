@@ -26,6 +26,9 @@ router.get('/api/v1', (req, res) => {
    })
    .catch(err => {
       console.log(err);
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.write(err);
+      res.end();
    });
 });
 
