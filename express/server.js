@@ -48,7 +48,22 @@ router.get('/api/v1/eventByID/:id', (req, res) => {
     res.write(err);
     res.end();
   });
+});
 
+router.get('/api/v1/allEventsByOrganiser/:id', (req, res) => {
+  fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
+    mode: 'no-cors'
+  })
+  .then(res => res.json())
+  .then(data => {
+    let theseEvents = Events.allEventsByOrganiser(data, req.params.id);
+    res.json({ event : theseEvents });
+  }).catch(err => {
+    console.log(err);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(err);
+    res.end();
+  });
 });
 
 app.use(bodyParser.json());

@@ -4,17 +4,28 @@ class Evnt {
   }
 
   allEventsByOrganiser(allEvents, orgID) {
-    // get all events
-
-
+    console.log('all events from org');
     // filter out the events for requested org
-
+    let theseEvents = [];
+    allEvents.forEach(evt => {
+      if (evt.organiserid === orgID){
+        console.log('org match');
+        theseEvents.push(evt);
+      }
+    });
 
     // return them
+    return theseEvents;
   }
 
   nextEventByOrganiser(allEvents, orgID) {
-    // filter out the next event for requested org
+    // filter out all events for requested org
+
+
+    // sort event by date
+
+
+    // pull out the most recent
 
 
     // return them
