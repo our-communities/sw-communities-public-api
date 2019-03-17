@@ -18,6 +18,8 @@ router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 router.get('/api/v1', (req, res) => {
   console.log('API v1 route hit');
 
+  try {
+
   fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
     mode: 'no-cors'
   })
@@ -32,6 +34,12 @@ router.get('/api/v1', (req, res) => {
       res.write(err);
       res.end();
    });
+ }catch (err){
+   console.log(err);
+   res.writeHead(200, { 'Content-Type': 'text/html' });
+   res.write(err);
+   res.end();
+ }
 });
 
 router.get('/api/v1/eventByID/:id', (req, res) => {
