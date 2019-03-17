@@ -21,7 +21,7 @@ router.get('/api/v1', (req, res) => {
   fetch('https://southwestcommunities.co.uk/api/v1/data.json')
    .then(res => res.json())
    .then(data => {
-      res.send({ data });
+      res.write( data );
    })
    .catch(err => {
       res.write(err);
