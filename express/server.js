@@ -14,14 +14,14 @@ router.get('/', (req, res) => {
 
 router.get('/another', (req, res) => res.json({ route: req.originalUrl }));
 
-router.get('/api-v1', (req, res) => {
+router.get('/api/v1', (req, res) => {
 
-  fetch('https://southwestcommunities.co.uk/api/v1/data.json')
-  .then(res.json({ data : req.body }));
+  //fetch('https://southwestcommunities.co.uk/api/v1/data.json')
+  //.then(res.json({ data : req.body }));
 
-  // res.writeHead(200, { 'Content-Type': 'text/html' });
-  // res.write('<h1>Hello from Express.js API!</h1>');
-  // ;
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.write('<h1>Hello from Express.js API!</h1>');
+  res.end();
 });
 
 router.post('/', (req, res) => res.json({ postBody: req.body }));
