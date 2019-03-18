@@ -3,7 +3,7 @@ const express = require('express');
 const serverless = require('serverless-http');
 const app = express();
 const bodyParser = require('body-parser');
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 const router = express.Router();
 const Events = require('../models/event');
 
