@@ -3,7 +3,7 @@ const express = require('express');
 const serverless = require('serverless-http');
 const app = express();
 const bodyParser = require('body-parser');
-const fetch = require('node-fetch');
+global.fetch = require('node-fetch');
 const router = express.Router();
 const Events = require('../models/event');
 
@@ -19,6 +19,7 @@ router.get('/api/v1', (req, res) => {
   console.log('API v1 route hit');
 
   try {
+
 
   fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
     mode: 'no-cors'
@@ -93,11 +94,11 @@ router.get('/api/v1/nextEventByOrganiser/:id', (req, res) => {
 app.use(bodyParser.json());
 
 // Make app work locally and remotely
-// if (process.env.CONTEXT){
+if (process.env.CONTEXT){
   app.use('/.netlify/functions/server', router); // path must route to lambda
-// } else {
-  // app.use('/', router);
-// }
+} else {
+  app.use('/', router);
+}
 
 
 module.exports = app;
