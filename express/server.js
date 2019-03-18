@@ -92,11 +92,11 @@ router.get('/api/v1/nextEventByOrganiser/:id', (req, res) => {
 app.use(bodyParser.json());
 
 // Make app work locally and remotely
-// if (process.env.CONTEXT){
+if (process.env.CONTEXT){
   app.use('/.netlify/functions/server', router); // path must route to lambda
-// } else {
-  // app.use('/', router);
-// }
+} else {
+  app.use('/', router);
+}
 
 
 module.exports = app;
