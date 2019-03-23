@@ -24,7 +24,6 @@ router.get('/api/v1', (req, res) => {
   })
    .then(res => {
      let results = res.json();
-     console.log(results);
      return results;
    })
    .then(data => {
@@ -33,12 +32,14 @@ router.get('/api/v1', (req, res) => {
    })
    .catch(err => {
       console.log(err);
+      console.log('first catch');
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.write(err);
       res.end();
    });
  }catch (err){
    console.log(err);
+   console.log('Try / Catch');
    res.writeHead(200, { 'Content-Type': 'text/html' });
    res.write(err);
    res.end();
