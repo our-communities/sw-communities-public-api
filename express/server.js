@@ -22,7 +22,11 @@ router.get('/api/v1', (req, res) => {
   fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
     mode: 'no-cors'
   })
-   .then(res => res.json())
+   .then(res => {
+     let results = res.json();
+     console.log(results);
+     return results;
+   })
    .then(data => {
      console.log(data);
      res.json({ data : data });
