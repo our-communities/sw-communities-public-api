@@ -1,6 +1,6 @@
 'use strict';
 
-const helper = require('../helpers/dateHelpers.js');
+const dateHelper = require('../helpers/dateHelpers.js');
 
 class Evnt {
   constructor(){ }
@@ -25,7 +25,7 @@ class Evnt {
     let orgEvents = this.allEventsByOrganiser(allEvents, orgID);
 
     // sort event by date
-    orgEvents.sort(helper.date.sortByDate);
+    orgEvents.sort(dateHelper.sortByDate);
 
     // return it
     return orgEvents[0];

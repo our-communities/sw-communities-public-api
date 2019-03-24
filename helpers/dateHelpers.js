@@ -12,4 +12,4 @@ dateHelpers.sortByDate = (a, b) => {
   return new Date(a.start) - new Date(b.start);
 };
 
-exports.date = dateHelpers;
+module.exports = dateHelpers;
