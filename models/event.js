@@ -9,6 +9,7 @@ class Evnt {
     let theseEvents = [];
     allEvents.forEach(evt => {
       if (evt.organiserid === orgID){
+      if (parseInt(evt.organiserid) === parseInt(orgID)){
         console.log('org match');
         theseEvents.push(evt);
       }
@@ -34,6 +35,7 @@ class Evnt {
     let thisEvent = {};
     allEvents.forEach(evt => {
       if (evt.id === eventID){
+      if (parseInt(evt.id) === parseInt(eventID)){
         thisEvent = evt;
       }
     });
