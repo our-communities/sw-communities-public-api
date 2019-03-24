@@ -1,14 +1,15 @@
-class Evnt {
-  constructor(){
+'use strict';
 
-  }
+const helper = require('../helpers/dateHelpers.js');
+
+class Evnt {
+  constructor(){ }
 
   allEventsByOrganiser(allEvents, orgID) {
     console.log('all events from org');
     // filter out the events for requested org
     let theseEvents = [];
     allEvents.forEach(evt => {
-      if (evt.organiserid === orgID){
       if (parseInt(evt.organiserid) === parseInt(orgID)){
         console.log('org match');
         theseEvents.push(evt);
@@ -24,7 +25,7 @@ class Evnt {
     let orgEvents = this.allEventsByOrganiser(allEvents, orgID);
 
     // sort event by date
-    orgEvents.sort(sortByDate);
+    orgEvents.sort(helper.date.sortByDate);
 
     // return it
     return orgEvents[0];
@@ -34,7 +35,6 @@ class Evnt {
     // find the event with the right ID
     let thisEvent = {};
     allEvents.forEach(evt => {
-      if (evt.id === eventID){
       if (parseInt(evt.id) === parseInt(eventID)){
         thisEvent = evt;
       }
@@ -44,9 +44,5 @@ class Evnt {
     return thisEvent;
   }
 }
-
-let sortByDate = (a, b) => {
-  return new Date(a.start) - new Date(b.start);
-};
 
 module.exports = new Evnt();
