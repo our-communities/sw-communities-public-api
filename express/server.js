@@ -70,6 +70,7 @@ router.get('/api/v1/aroundDate/:date', (req, res) => {
   .then(res => res.json())
   .then(data => {
     let results = Events.aroundDate(data, req.params.date);
+    console.log(results);
     res.json({ event : results });
   }).catch(err => {
     console.log(err);
