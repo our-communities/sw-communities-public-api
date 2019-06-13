@@ -43,7 +43,7 @@ class Evnt {
   }
 
   nextEvent(allEvents){
-    return allEvents.sort(dateHelper.sortByDate);
+    return allEvents.sort(dateHelper.sortByDate)[0];
   }
 }
 
