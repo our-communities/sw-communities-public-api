@@ -39,9 +39,11 @@ class Evnt {
         thisEvent = evt;
       }
     });
-
-    // return
     return thisEvent;
+  }
+
+  nextEvent(allEvents){
+    return allEvents.sort(dateHelper.sortByDate);
   }
 }
 
