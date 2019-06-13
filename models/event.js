@@ -21,6 +21,7 @@ class Evnt {
   }
 
   nextEventByOrganiser(allEvents, orgID) {
+    console.log('next event by organiser');
     // filter out all events for requested org
     let orgEvents = this.allEventsByOrganiser(allEvents, orgID);
 
@@ -32,6 +33,7 @@ class Evnt {
   }
 
   eventByID(allEvents, eventID) {
+    console.log('event by id');
     // find the event with the right ID
     let thisEvent = {};
     allEvents.forEach(evt => {
@@ -43,11 +45,12 @@ class Evnt {
   }
 
   nextEvent(allEvents){
+    console.log('all events');
     return allEvents.sort(dateHelper.sortByDate)[0];
   }
 
   aroundDate(allEvents, date) {
-    console.log('Around date: ', date);
+    console.log('Around date: ' + date);
     let result = { 'matches': [], 'near': [] };
 
     // check for event on that day.
