@@ -50,6 +50,7 @@ class Evnt {
   }
 
   aroundDate(allEvents, date) {
+    date = new Date(date);
     console.log('Around date: ' + date);
     let result = { 'matches': [], 'near': [] };
 
