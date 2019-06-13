@@ -50,17 +50,23 @@ class Evnt {
   }
 
   aroundDate(allEvents, date) {
+
     date = new Date(date);
     console.log('Around date: ' + date);
     let result = { 'matches': [], 'near': [] };
 
     // check for event on that day.
     allEvents.forEach(evt => {
-      let evtStart = new Date(evt.startDate);
-      const startDate = date;
-      const endDate = date;
+      let evtStart = new Date(evt.start);
+      const startDate = new Date(date);
+      const endDate = new Date(date);
       startDate.setDate(date.getDate() - 5);
       endDate.setDate(date.getDate() + 5);
+      console.log(evtStart);
+      console.log(startDate);
+      console.log(endDate);
+      console.log(evtStart >= startDate && evtStart <= endDate);
+      console.log('---------------------');
 
       if (evtStart.getMonth() === date.getMonth() && evtStart.getDate() === date.getDate()) {
         result.matches.push(evt);
