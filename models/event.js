@@ -45,6 +45,27 @@ class Evnt {
   nextEvent(allEvents){
     return allEvents.sort(dateHelper.sortByDate)[0];
   }
+
+  aroundDate(allEvents, date) {
+    let result = { 'matches': [], 'near': [] };
+
+    // check for event on that day.
+    allEvents.forEach(evt => {
+      let evtStart = new Date(evt.startDate);
+      const startDate = date;
+      const endDate = date;
+      startDate.setDate(date.getDate() - 5);
+      endDate.setDate(date.getDate() + 5);
+
+      if (evtStart.getMonth() === date.getMonth() && evtStart.getDate() === date.getDate()) {
+        result.matches.push(evt);
+      } else if (evtStart >= startDate && evtStart <= endDate) {
+        result.near.push(evt);
+      }
+    });
+
+    return result;
+  }
 }
 
 module.exports = new Evnt();

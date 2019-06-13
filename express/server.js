@@ -62,6 +62,22 @@ router.get('/api/v1/nextEvent', (req, res) => {
   });
 });
 
+router.get('/api/v1/aroundDate/:date', (req, res) => {
+  fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
+    mode: 'no-cors'
+  })
+  .then(res => res.json())
+  .then(data => {
+    let results = Events.aroundDate(data, req.params.date);
+    res.json(results);
+  }).catch(err => {
+    console.log(err);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(err);
+    res.end();
+  });
+});
+
 router.get('/api/v1/eventByID/:id', (req, res) => {
   fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
     mode: 'no-cors'
