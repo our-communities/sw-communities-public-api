@@ -63,6 +63,7 @@ router.get('/api/v1/nextEvent', (req, res) => {
 });
 
 router.get('/api/v1/aroundDate/:date', (req, res) => {
+  console.log('REQUESTED DATE: ', req.params.date);
   fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
     mode: 'no-cors'
   })
