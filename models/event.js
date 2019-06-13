@@ -47,6 +47,7 @@ class Evnt {
   }
 
   aroundDate(allEvents, date) {
+    console.log('Around date: ', date);
     let result = { 'matches': [], 'near': [] };
 
     // check for event on that day.

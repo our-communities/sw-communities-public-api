@@ -47,6 +47,7 @@ router.get('/api/v1', (req, res) => {
 });
 
 router.get('/api/v1/nextEvent', (req, res) => {
+  console.log('Next event');
   fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
     mode: 'no-cors'
   })
