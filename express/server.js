@@ -134,7 +134,6 @@ router.get('/api/v1/eventByOrganiserAndDate/:id/:date', (req, res) => {
   })
   .then(res => res.json())
   .then(data => {
-    let thisEvent = Events.eventByOrganiseAndDate(data, req.params.id, req.params.date);
   // app.use('/', router);
   // app.use('/', router);
     let thisEvent = Events.eventByOrganiserAndDate(data, req.params.id, req.params.date);
