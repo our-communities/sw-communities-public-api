@@ -36,6 +36,7 @@ class Evnt {
     console.log('next event by organiser and date');
     // filter out all events for requested org
     let result = {};
+    let close = {};
     let orgEvents = this.allEventsByOrganiser(allEvents, orgID);
 
     date = new Date(date);
@@ -46,11 +47,13 @@ class Evnt {
 
       if (evtStart.getMonth() === date.getMonth() && evtStart.getDate() === date.getDate()) {
         result = evt;
+      } else if (evtStart.getMonth() === date.getMonth()) {
+        close = evt;
       }
     });
 
     // return it
-    return result;
+    return Object.keys(result).length >= 1 ? result : close;
   }
 
   eventInDatePeriod(allEvents, start, end) {
