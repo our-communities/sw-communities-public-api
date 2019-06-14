@@ -53,6 +53,26 @@ class Evnt {
     return result;
   }
 
+  eventInDatePeriod(allEvents, date) {
+    console.log('next event by organiser and date');
+    // filter out all events for requested org
+    let result = {};
+
+    date = new Date(date.startDate);
+
+    // check for event on that day.
+    allEvents.forEach(evt => {
+      let evtStart = new Date(evt.start);
+
+      if (evtStart.getMonth() === date.getMonth() && evtStart.getDate() === date.getDate()) {
+        result = evt;
+      }
+    });
+
+    // return it
+    return result;
+  }
+
   eventByID(allEvents, eventID) {
     console.log('event by id');
     // find the event with the right ID
