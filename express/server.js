@@ -146,13 +146,13 @@ router.get('/api/v1/eventByOrganiserAndDate/:id/:date', (req, res) => {
   });
 });
 
-router.get('/api/v1/eventInDatePeriod/:date', (req, res) => {
+router.get('/api/v1/eventInDatePeriod/:start/:end', (req, res) => {
   fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
     mode: 'no-cors'
   })
   .then(res => res.json())
   .then(data => {
-    let theseEvents = Events.eventInDatePeriod(data, req.params.date);
+    let theseEvents = Events.eventInDatePeriod(data, req.params.start, req.params.end);
     res.json({ event : theseEvents });
   }).catch(err => {
     console.log(err);
