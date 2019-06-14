@@ -54,21 +54,24 @@ class Evnt {
   }
 
   eventInDatePeriod(allEvents, start, end) {
-    console.log('next event by organiser and date');
+    console.log('event in date period');
     // filter out all events for requested org
-    let result = {};
+    let result = [];
 
     start = new Date(start);
+    end = new Date(end);
 
     // check for event on that day.
     allEvents.forEach(evt => {
       let evtStart = new Date(evt.start);
+      let evtEnd = new Date(evt.end);
 
-      if (evtStart.getMonth() === start.getMonth() && evtStart.getDate() === start.getDate()) {
-        result = evt;
+      if (evtStart.getMonth() === start.getMonth() && evtStart.getDate() >= start.getDate() && evtEnd <= end) {
+        result.push(evt);
       }
     });
 
+    console.log(result);
     // return it
     return result;
   }
