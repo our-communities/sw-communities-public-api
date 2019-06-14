@@ -32,6 +32,27 @@ class Evnt {
     return orgEvents[0];
   }
 
+  eventByOrganiserAndDate(allEvents, orgID, date) {
+    console.log('next event by organiser and date');
+    // filter out all events for requested org
+    let result = {};
+    let orgEvents = this.allEventsByOrganiser(allEvents, orgID);
+
+    date = new Date(date);
+
+    // check for event on that day.
+    orgEvents.forEach(evt => {
+      let evtStart = new Date(evt.start);
+
+      if (evtStart.getMonth() === date.getMonth() && evtStart.getDate() === date.getDate()) {
+        result = evt;
+      }
+    });
+
+    // return it
+    return result;
+  }
+
   eventByID(allEvents, eventID) {
     console.log('event by id');
     // find the event with the right ID
@@ -62,11 +83,6 @@ class Evnt {
       const endDate = new Date(date);
       startDate.setDate(date.getDate() - 5);
       endDate.setDate(date.getDate() + 5);
-      console.log(evtStart);
-      console.log(startDate);
-      console.log(endDate);
-      console.log(evtStart >= startDate && evtStart <= endDate);
-      console.log('---------------------');
 
       if (evtStart.getMonth() === date.getMonth() && evtStart.getDate() === date.getDate()) {
         result.matches.push(evt);

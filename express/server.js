@@ -71,7 +71,6 @@ router.get('/api/v1/aroundDate/:date', (req, res) => {
   .then(res => res.json())
   .then(data => {
     let results = Events.aroundDate(data, req.params.date);
-    console.log(results);
     res.json({ event : results });
   }).catch(err => {
     console.log(err);
@@ -129,13 +128,30 @@ router.get('/api/v1/nextEventByOrganiser/:id', (req, res) => {
   });
 });
 
+router.get('/api/v1/eventByOrganiserAndDate/:id/:date', (req, res) => {
+  fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
+    mode: 'no-cors'
+  })
+  .then(res => res.json())
+  .then(data => {
+    let thisEvent = Events.eventByOrganiseAndDate(data, req.params.id, req.params.date);
+  // app.use('/', router);
+  // app.use('/', router);
+    res.json({ event : thisEvent });
+  }).catch(err => {
+    console.log(err);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(err);
+    res.end();
+  });
+});
+
 app.use(bodyParser.json());
 
 // Make app work locally and remotely
 // if (process.env.CONTEXT){
   app.use('/.netlify/functions/server', router); // path must route to lambda
 // } else {
-  // app.use('/', router);
 // }
 
 
