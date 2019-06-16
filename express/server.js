@@ -168,6 +168,7 @@ app.use(bodyParser.json());
 // if (process.env.CONTEXT){
   app.use('/.netlify/functions/server', router); // path must route to lambda
 // } else {
+  //app.use('/', router);
 // }
 
 
