@@ -69,7 +69,7 @@ class Evnt {
       let evtStart = new Date(evt.start);
       let evtEnd = new Date(evt.end);
 
-      if (evtStart.getMonth() === start.getMonth() && evtStart.getDate() >= start.getDate() && evtEnd <= end) {
+      if (evtStart >= start && evtEnd <= end) {
         result.push(evt);
       }
     });
