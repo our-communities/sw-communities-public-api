@@ -44,19 +44,11 @@ class Evnt {
     // check for event on that day.
     orgEvents.forEach(evt => {
       let evtStart = new Date(evt.start);
-      console.log('EVENT START', evtStart);
-      console.log('DATE', date);
-      console.log('EVENT START GET DATE', evtStart.getMonth());
-      console.log('GET DATE MONTH', date.getMonth());
 
       if (evtStart.getMonth() === date.getMonth() && evtStart.getDate() === date.getDate()) {
-        console.log('FULL MATCH');
         result = evt;
       } else if (evtStart.getMonth() === date.getMonth()) {
-        console.log('CLOSE MATCH');
         close = evt;
-      } else {
-        console.log('NO MATCH');
       }
     });
 
