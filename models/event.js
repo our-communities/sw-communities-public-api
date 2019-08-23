@@ -50,9 +50,13 @@ class Evnt {
       console.log('GET DATE MONTH', date.getMonth());
 
       if (evtStart.getMonth() === date.getMonth() && evtStart.getDate() === date.getDate()) {
+        console.log('FULL MATCH');
         result = evt;
       } else if (evtStart.getMonth() === date.getMonth()) {
+        console.log('CLOSE MATCH');
         close = evt;
+      } else {
+        console.log('NO MATCH');
       }
     });
 
