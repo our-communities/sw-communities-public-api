@@ -93,7 +93,9 @@ class Evnt {
 
   nextEvent(allEvents){
     console.log('all events');
-    return allEvents.sort(dateHelper.sortByDate)[0];
+    let sorted = allEvents.sort(dateHelper.sortByDate);
+    console.log('---SORTED: ', sorted);
+    return sorted[0];
   }
 
   aroundDate(allEvents, date) {
