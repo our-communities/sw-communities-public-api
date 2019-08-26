@@ -92,9 +92,10 @@ class Evnt {
   }
 
   nextEvent(allEvents){
-    console.log('all events');
+    console.log('Next event');
+    console.log('---Un SORTED: ', allEvents[0]);
     let sorted = allEvents.sort(dateHelper.sortByDate);
-    console.log('---SORTED: ', sorted);
+    console.log('---SORTED: ', sorted[0]);
     return sorted[0];
   }
 
