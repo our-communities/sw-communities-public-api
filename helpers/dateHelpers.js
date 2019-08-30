@@ -9,7 +9,7 @@ let dateHelpers = {};
 * @return {Integer} The order of items
 */
 dateHelpers.sortByDate = (a, b) => {
-  return new Date(a.start) - new Date(b.start);
+  return new Date(a.start).getTime() > new Date(b.start).getTime() ? 1 : -1;
 };
 
 module.exports = dateHelpers;
