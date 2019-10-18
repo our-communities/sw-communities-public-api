@@ -53,7 +53,8 @@ router.get('/api/v1/nextEvent', (req, res) => {
   })
   .then(res => res.json())
   .then(data => {
-    let thisEvent = Events.nextEvent(data.events);
+    let resource = data;
+    let thisEvent = Events.nextEvent(resource[0].events);
     res.json({ event : thisEvent });
   }).catch(err => {
     console.log(err);
