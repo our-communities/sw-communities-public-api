@@ -53,7 +53,7 @@ router.get('/api/v1/nextEvent', (req, res) => {
   })
   .then(res => res.json())
   .then(data => {
-    let thisEvent = Events.nextEvent(data);
+    let thisEvent = Events.nextEvent(data.events);
     res.json({ event : thisEvent });
   }).catch(err => {
     console.log(err);
@@ -166,9 +166,9 @@ app.use(bodyParser.json());
 
 // Make app work locally and remotely
 // if (process.env.CONTEXT){
-  app.use('/.netlify/functions/server', router); // path must route to lambda
+  //app.use('/.netlify/functions/server', router); // path must route to lambda
 // } else {
-  //app.use('/', router);
+  app.use('/', router);
 // }
 
 
