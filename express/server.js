@@ -71,7 +71,7 @@ router.get('/api/v1/aroundDate/:date', (req, res) => {
   })
   .then(res => res.json())
   .then(data => {
-    let results = Events.aroundDate(data, req.params.date);
+    let results = Events.aroundDate(data[0].events, req.params.date);
     res.json({ event : results });
   }).catch(err => {
     console.log(err);
@@ -87,7 +87,7 @@ router.get('/api/v1/eventByID/:id', (req, res) => {
   })
   .then(res => res.json())
   .then(data => {
-    let thisEvent = Events.eventByID(data, req.params.id);
+    let thisEvent = Events.eventByID(data[0].events, req.params.id);
     res.json({ event : thisEvent });
   }).catch(err => {
     console.log(err);
@@ -103,7 +103,7 @@ router.get('/api/v1/allEventsByOrganiser/:id', (req, res) => {
   })
   .then(res => res.json())
   .then(data => {
-    let theseEvents = Events.allEventsByOrganiser(data, req.params.id);
+    let theseEvents = Events.allEventsByOrganiser(data[0].events, req.params.id);
     res.json({ event : theseEvents });
   }).catch(err => {
     console.log(err);
@@ -119,7 +119,7 @@ router.get('/api/v1/nextEventByOrganiser/:id', (req, res) => {
   })
   .then(res => res.json())
   .then(data => {
-    let theseEvents = Events.nextEventByOrganiser(data, req.params.id);
+    let theseEvents = Events.nextEventByOrganiser(data[0].events, req.params.id);
     res.json({ event : theseEvents });
   }).catch(err => {
     console.log(err);
@@ -137,7 +137,7 @@ router.get('/api/v1/eventByOrganiserAndDate/:id/:date', (req, res) => {
   .then(data => {
   // app.use('/', router);
   // app.use('/', router);
-    let thisEvent = Events.eventByOrganiserAndDate(data, req.params.id, req.params.date);
+    let thisEvent = Events.eventByOrganiserAndDate(data[0].events, req.params.id, req.params.date);
     res.json({ event : thisEvent });
   }).catch(err => {
     console.log(err);
@@ -153,7 +153,7 @@ router.get('/api/v1/eventInDatePeriod/:start/:end', (req, res) => {
   })
   .then(res => res.json())
   .then(data => {
-    let theseEvents = Events.eventInDatePeriod(data, req.params.start, req.params.end);
+    let theseEvents = Events.eventInDatePeriod(data[0].events, req.params.start, req.params.end);
     res.json({ event : theseEvents });
   }).catch(err => {
     console.log(err);
@@ -167,9 +167,9 @@ app.use(bodyParser.json());
 
 // Make app work locally and remotely
 // if (process.env.CONTEXT){
-  //app.use('/.netlify/functions/server', router); // path must route to lambda
+  app.use('/.netlify/functions/server', router); // path must route to lambda
 // } else {
-  app.use('/', router);
+  // app.use('/', router);
 // }
 
 
