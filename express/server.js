@@ -208,13 +208,7 @@ router.get('/api/v1/organiser/:id/EventByDate/:date', (req, res) => {
 
 app.use(bodyParser.json());
 
-// Make app work locally and remotely
-// if (process.env.CONTEXT){
-  // app.use('/.netlify/functions/server', router); // path must route to lambda
-// } else {
-  app.use('/', router);
-// }
-
+process.env.LOCAL ? app.use('/', router) : app.use('/.netlify/functions/server', router);
 
 module.exports = app;
 module.exports.handler = serverless(app);
