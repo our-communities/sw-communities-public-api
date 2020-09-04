@@ -122,6 +122,7 @@ class Evnt {
 
   onlineEvents(allEvents) {
     let results = allEvents.filter(evt => evt.venue === 'Online event');
+    results = results.filter(evt => new Date(evt.start) > new Date());
     return results.sort(dateHelper.sortByDate);
   }
 }
