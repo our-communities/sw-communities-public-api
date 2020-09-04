@@ -92,11 +92,9 @@ class Evnt {
   }
 
   nextEvent(allEvents){
-    console.log('Next event');
-    console.log('---Un SORTED: ', allEvents[0]);
     let sorted = allEvents.sort(dateHelper.sortByDate);
-    console.log('---SORTED: ', sorted[0]);
-    return sorted[0];
+    let processed = sorted.filter(evt => new Date(evt.start) > new Date());
+    return processed[0];
   }
 
   aroundDate(allEvents, date) {
