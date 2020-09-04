@@ -117,8 +117,12 @@ class Evnt {
         result.near.push(evt);
       }
     });
-
     return result;
+  }
+
+  onlineEvents(allEvents) {
+    let results = allEvents.filter(evt => evt.venue === 'Online event');
+    return results.sort(dateHelper.sortByDate);
   }
 }
 

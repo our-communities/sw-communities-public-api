@@ -84,6 +84,25 @@ router.get('/api/v1/nextEvent', (req, res) => {
   });
 });
 
+// Get all online events in the calendar
+router.get('/api/v1/allOnlineEvents', (req, res) => {
+  console.log('All online events');
+  fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
+    mode: 'no-cors'
+  })
+  .then(res => res.json())
+  .then(data => {
+    let resource = data;
+    let onlineEvents = Events.onlineEvents(resource[0].events);
+    res.json({ event : onlineEvents });
+  }).catch(err => {
+    console.log(err);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(err);
+    res.end();
+  });
+});
+
 // Get events between two dates (e.g for a month)
 router.get('/api/v1/eventInDatePeriod/:start/:end', (req, res) => {
   fetch('https://southwestcommunities.co.uk/api/v1/data.json', {
@@ -191,9 +210,9 @@ app.use(bodyParser.json());
 
 // Make app work locally and remotely
 // if (process.env.CONTEXT){
-  app.use('/.netlify/functions/server', router); // path must route to lambda
+  // app.use('/.netlify/functions/server', router); // path must route to lambda
 // } else {
-  // app.use('/', router);
+  app.use('/', router);
 // }
 
 
